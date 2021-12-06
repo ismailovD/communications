@@ -1,8 +1,8 @@
 const   sideBarBtn = document.querySelector('.side-bar__btn'),
         sideBar = document.querySelector('.side-bar'), 
-        pageContent =document.querySelector('.return__content'), 
-        body = document.querySelector('.return__body'),
+        pageContent =document.querySelector('.global__content'),  
         selectBtns = document.querySelectorAll('.select__btn'),
+        communContent = document.querySelector('.communications__inner');
         selectParent = '.select',
         selectItems = document.querySelectorAll('.select__item'),
         textareaParent = ".templates",
@@ -14,15 +14,17 @@ const   sideBarBtn = document.querySelector('.side-bar__btn'),
 
  
     
-sideBarBtn.addEventListener('click', () => { 
-    sideBar.classList.toggle('active');
+sideBarBtn.addEventListener('click', () => {
+    sideBar.classList.toggle('active');  
     if(sideBar.classList.contains('active')){  
             pageContent.style.marginLeft = "275px"; 
+            communContent.classList.add('change') 
     }else {  
         dropdownWindow.classList.remove('active')
         pageContent.style.marginLeft = "65px";  
+        communContent.classList.remove('change')
     }
-});
+}); 
          
   
 
@@ -59,5 +61,8 @@ textareasCommun.forEach(writeTable => {
 })
 
 dropdownBtn.addEventListener('click', () => {
-    dropdownWindow.classList.toggle('active')
+    dropdownWindow.classList.toggle('active'); 
+    if(dropdownWindow.classList.contains('active')){
+        sideBar.classList.add('change-height')
+    }else sideBar.classList.remove('change-height')
 })
