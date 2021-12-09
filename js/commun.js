@@ -1,16 +1,20 @@
 const   sideBarBtn = document.querySelector('.side-bar__btn'),
         sideBar = document.querySelector('.side-bar'), 
         pageContent =document.querySelector('.global__content'),  
+        visitedPage = document.querySelectorAll('.global-item'),
+        userDropdown = document.querySelector('.global__auth'),
+        userBtn = document.querySelector('.user__dropdown-btn'),
         selectBtns = document.querySelectorAll('.select__btn'),
-        communContent = document.querySelector('.communications__inner');
+        communContent = document.querySelector('.communications__inner'),
+        sideBarSet = '.side-bar__settings',
         selectParent = '.select',
         selectItems = document.querySelectorAll('.select__item'),
         textareaParent = ".templates",
         textareasCommun = document.querySelectorAll('.templates__textarea'),
         symbolCurent = '.templates__symbols-curent',
         symbolMax = '.templates__symbols-max',
-        dropdownWindow = document.querySelector('.side-bar__dropdown'),
-        dropdownBtn = document.querySelector('.side-bar__dropdown-btn');
+        dropdownList = document.querySelector('.side-bar__settings'),
+        dropdownBtn = document.querySelector('.side-bar__dropdown');
 
  
     
@@ -20,13 +24,30 @@ sideBarBtn.addEventListener('click', () => {
             pageContent.style.marginLeft = "275px"; 
             communContent.classList.add('change') 
     }else {  
-        dropdownWindow.classList.remove('active')
+        dropdownList.classList.remove('active')
         pageContent.style.marginLeft = "65px";  
         communContent.classList.remove('change')
     }
 }); 
          
-  
+userBtn.addEventListener('click', () => {
+    userDropdown.classList.toggle('open')
+});
+
+visitedPage.forEach(item => {
+    item.addEventListener('click', ()=> {
+        visitedPage.forEach(elem => {
+            elem.classList.remove('visited')
+            if(elem.closest(sideBarSet)){
+                elem.closest(sideBarSet).classList.remove('visited')
+            }
+        })
+        if(item.closest(sideBarSet)){ 
+            item.closest(sideBarSet).classList.add('visited')
+        }
+        item.classList.add('visited')
+    })
+})  
 
 selectBtns.forEach(btn => { 
     btn.addEventListener('click', () => {  
@@ -61,8 +82,8 @@ textareasCommun.forEach(writeTable => {
 })
 
 dropdownBtn.addEventListener('click', () => {
-    dropdownWindow.classList.toggle('active'); 
-    if(dropdownWindow.classList.contains('active')){
+    dropdownList.classList.toggle('active'); 
+    if(dropdownList.classList.contains('active')){
         sideBar.classList.add('change-height')
     }else sideBar.classList.remove('change-height')
 })
