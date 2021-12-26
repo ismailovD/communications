@@ -14,7 +14,23 @@ const   sideBarBtn = document.querySelector('.side-bar__btn'),
         symbolCurent = '.templates__symbols-curent',
         symbolMax = '.templates__symbols-max',
         dropdownList = document.querySelector('.side-bar__settings'),
-        dropdownBtn = document.querySelector('.side-bar__dropdown');
+        dropdownBtn = document.querySelector('.side-bar__dropdown'),
+        globalSearch = document.querySelector('.global__search-input'),
+        globalSearchDropdown = document.querySelector('.global__search-dropdown');
+        
+globalSearch.addEventListener('input', () => { 
+    if(globalSearch.value.length > 0){
+        globalSearchDropdown.classList.add('active');
+        setTimeout(()=> {
+            globalSearchDropdown.classList.add('show');
+        }, 100)
+    }else {
+        globalSearchDropdown.classList.remove('show');
+        setTimeout(()=> {
+            globalSearchDropdown.classList.remove('active');
+        }, 100)
+    }
+}) 
 
  
     
